@@ -10,4 +10,5 @@ module.exports = {
   facebookClientID: "",
   facebookClientSecret: "",
   facebookCallbackUrl: "",
+  jwtSecretKey: "mysecret",
 };
