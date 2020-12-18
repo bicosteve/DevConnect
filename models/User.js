@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+
 const { Schema } = mongoose;
 
-const userSchema = Schema({
+const userSchema = new Schema({
   googleId: String,
   facebookId: String,
   username: {
@@ -14,6 +15,7 @@ const userSchema = Schema({
     type: String,
     required: true,
     lowercase: true,
+    trim: true,
   },
   password: {
     type: String,

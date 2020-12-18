@@ -12,11 +12,14 @@ const route = express();
 
 const User = mongoose.model("users");
 
+//route POST auth/register/
+//desc Create an account
+//access Public route
 route.post("/register", async (req, res) => {
-  const { errors, isValid } = validateRegister(req.body);
-  if (!isValid) return res.status(400).json(errors);
-
   try {
+    const { errors, isValid } = validateRegister(req.body);
+    if (!isValid) return res.status(400).json(errors);
+
     const { username, email, password } = req.body;
     const avatar = gravatar.url(email, { s: "200", r: "pg", d: "mm" });
 
@@ -26,12 +29,7 @@ route.post("/register", async (req, res) => {
       return res.status(400).json(errors);
     }
 
-    const newUser = new User({
-      username,
-      email,
-      avatar,
-      password,
-    });
+    const newUser = new User({ ...req.body, avatar });
     const result = await newUser.save();
     if (!result) return res.status(400).json({ msg: "User not created!" });
     res.status(201).json({ newUser, msg: "User created!" });
@@ -40,11 +38,14 @@ route.post("/register", async (req, res) => {
   }
 });
 
+//route POST auth/login/
+//desc Log into an account
+//access Private route
 route.post("/login", async (req, res) => {
-  const { errors, isValid } = validateLogin(req.body);
-  if (!isValid) return res.status(400).json(errors);
-
   try {
+    const { errors, isValid } = validateLogin(req.body);
+    if (!isValid) return res.status(400).json(errors);
+
     const user = await User.findByCredentials(
       req.body.email,
       req.body.password
@@ -55,7 +56,13 @@ route.post("/login", async (req, res) => {
       return res.status(404).json(errors);
     }
 
-    const payload = { id: user.id, email: user.email };
+    const payload = {
+      id: user.id,
+      email: user.email,
+      googleId: user.googleId,
+      facebookId: user.facebookId,
+    };
+
     const token = await jwt.sign(payload, keys.jwtSecretKey, {
       expiresIn: 24 * 60 * 60 * 1000,
     });
@@ -66,6 +73,9 @@ route.post("/login", async (req, res) => {
   }
 });
 
+//route GET auth/current/
+//desc Get an auth user
+//access Private route
 route.get(
   "/current",
   passport.authenticate("jwt", { session: false }),

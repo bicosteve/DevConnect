@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 
 require("./models/User");
+require("./models/Profile");
+require("./models/Post");
 const keys = require("./config/keys");
 
 mongoose
@@ -11,6 +13,7 @@ mongoose
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
   })
   .then(() => {
     console.log("Connected to DB...!");
@@ -26,7 +29,7 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 
 //passport config
-require("./config/passport")(passport);
+require("./passport/passport")(passport);
 
 //use routes
 app.use("/auth", require("./routes/auth"));
