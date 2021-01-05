@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { resetPassword } from '../../actions/authAction';
@@ -55,12 +55,17 @@ class ResetPassword extends Component {
                                     value={this.state.email}
                                     onChange={this.onInputChange}
                                     error={errors.email}
-                                    info='Enter email to receive reset link'
+                                    info='Check your mail for a reset link'
                                 />
                                 <input
                                     type='submit'
                                     className='btn btn-info btn-block mt-4'
                                 />
+                                <small className='text-center float-right mt-2'>
+                                    <Link to='/login' className='text-muted mt-4'>
+                                        Have an account? Login
+                                    </Link>
+                                </small>
                             </form>
                         </div>
                     </div>

@@ -55,27 +55,6 @@ class Login extends Component {
                                 Log In To Your DevConnect Account
                             </h6>
                             <hr />
-                            <p className='text-center text-muted'>
-                                Quickly login with your social accounts
-                            </p>
-                            <Link
-                                to='/google'
-                                className='btn btn-danger btn-block mt-4 disabled'>
-                                <i className='fa fa-google-plus-official mr-2'></i>
-                                Login With Google
-                            </Link>
-                            <Link
-                                to='/facebook'
-                                disable
-                                className='btn btn-info btn-block mt-3 disabled'>
-                                <i className='fa fa-facebook-official mr-2'></i>
-                                Login With Facebook
-                            </Link>
-                            <hr />
-                            <p className='text-center text-muted m-2'>
-                                Or login with your email and password
-                            </p>
-                            <hr />
                             <form noValidate onSubmit={this.onLoginSubmit}>
                                 <div className='form-group'>
                                     <input
@@ -121,10 +100,10 @@ class Login extends Component {
                                     type='submit'
                                     className='btn btn-info btn-block mt-4 mb-3'
                                 />
-                                <small>
+                                <small className='text-center float-right'>
                                     <Link
                                         to='/resetPassword'
-                                        className='text-center text-muted mt-4'>
+                                        className='text-muted mt-4'>
                                         Forgot Password?
                                     </Link>
                                 </small>

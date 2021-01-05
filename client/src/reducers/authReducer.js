@@ -1,5 +1,5 @@
 import isEmpty from '../validation/is_empty';
-import { SET_CURRENT_USER } from '../actions/types';
+import { SET_CURRENT_USER, FETCH_USER } from '../actions/types';
 
 const initialState = {
     isAuthenticated: false,
@@ -13,6 +13,11 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 isAuthenticated: !isEmpty(action.payload),
                 user: action.payload,
+            };
+        case FETCH_USER:
+            return {
+                user: action.payload || null,
+                isAuthenticated: true,
             };
         default:
             return state;

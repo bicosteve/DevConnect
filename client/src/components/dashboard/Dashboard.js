@@ -9,6 +9,7 @@ import {
     deleteAccount,
     deleteProfile,
 } from '../../actions/profileAction';
+import { fetchUser } from '../../actions/authAction';
 import Spinner from '../common/Spinner';
 import ProfileActions from './ProfileActions';
 import Experience from './Experience';
@@ -17,6 +18,7 @@ import Education from './Education';
 class Dashboard extends Component {
     componentDidMount() {
         this.props.getCurrentProfile();
+        this.props.fetchUser();
     }
 
     onDeleteAccount = (event) => {
@@ -47,7 +49,6 @@ class Dashboard extends Component {
                             </Link>{' '}
                         </p>
                         <ProfileActions />
-                        {/* todo:experience and education*/}
                         <Experience
                             className='mb-4'
                             experience={profile.experience}
@@ -101,6 +102,7 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = {
     getCurrentProfile: PropTypes.func.isRequired,
+    fetchUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     profile: PropTypes.object.isRequired,
     deleteAccount: PropTypes.func.isRequired,
@@ -116,4 +118,5 @@ export default connect(mapStateToProps, {
     getCurrentProfile,
     deleteAccount,
     deleteProfile,
+    fetchUser,
 })(withRouter(Dashboard));

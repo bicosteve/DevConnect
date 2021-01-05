@@ -181,7 +181,7 @@ route.get(
 //route GET auth/google/callback
 //loading user profile
 //public
-route.get('/google/callback', passport.authenticate('google'), (req, res) => {
+route.get('/google/callback', passport.authenticate('google', {}), (req, res) => {
     return res.status(200).redirect('/dashboard');
 });
 

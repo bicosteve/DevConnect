@@ -6,7 +6,7 @@ import './App.css';
 
 import store from './store';
 import setAuthToken from './utils/setAuthToken';
-import { logoutUser, setCurrentUser } from './actions/authAction';
+import { logoutUser, setCurrentUser, fetchUser } from './actions/authAction';
 import { clearCurrentProfile } from './actions/profileAction';
 
 import PrivateRoute from './components/common/PrivateRoute';
@@ -37,6 +37,8 @@ if (localStorage.jwtToken) {
     const decoded = jwt_decode(localStorage.jwtToken);
     //set user and is authenticated
     store.dispatch(setCurrentUser(decoded));
+
+    store.dispatch(fetchUser());
 
     //check for expired token
     const currentTime = Date.now() / 1000;

@@ -2,8 +2,7 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 
 import setAuthToken from '../utils/setAuthToken';
-import { GET_ERRORS } from './types';
-import { SET_CURRENT_USER } from './types';
+import { GET_ERRORS, SET_CURRENT_USER, FETCH_USER } from './types';
 import { clearErrors } from './postAction';
 
 ///Register New User
@@ -19,28 +18,14 @@ export const registerUser = (userData, history) => {
     };
 };
 
-///Sent reset link
-export const resetPassword = (userData, history) => {
+//google login
+export const fetchUser = () => {
     return async (dispatch) => {
         try {
-            dispatch(clearErrors());
-            await axios.post('/auth/resetPassword', userData);
-            history.push('/login');
+            const { data } = await axios.get('/auth/auth_user');
+            dispatch({ type: FETCH_USER, payload: data });
         } catch (error) {
-            dispatch({ type: GET_ERRORS, payload: error.response.data });
-        }
-    };
-};
-
-///Update new password
-export const updatePassword = (userData, history) => {
-    return async (dispatch) => {
-        try {
-            dispatch(clearErrors());
-            await axios.post('/auth/newPassword', userData);
-            history.push('/login');
-        } catch (error) {
-            dispatch({ type: GET_ERRORS, payload: error.response.data });
+            dispatch({ type: GET_ERRORS, payload: {} });
         }
     };
 };
@@ -78,6 +63,32 @@ export const logoutUser = () => {
         setAuthToken(false);
         ///set current user to {} which set authenticated to false
         dispatch(setCurrentUser({}));
+    };
+};
+
+///Sent reset link
+export const resetPassword = (userData, history) => {
+    return async (dispatch) => {
+        try {
+            dispatch(clearErrors());
+            await axios.post('/auth/resetPassword', userData);
+            history.push('/login');
+        } catch (error) {
+            dispatch({ type: GET_ERRORS, payload: error.response.data });
+        }
+    };
+};
+
+///Update new password
+export const updatePassword = (userData, history) => {
+    return async (dispatch) => {
+        try {
+            dispatch(clearErrors());
+            await axios.post('/auth/newPassword', userData);
+            history.push('/login');
+        } catch (error) {
+            dispatch({ type: GET_ERRORS, payload: error.response.data });
+        }
     };
 };
 

@@ -55,26 +55,6 @@ class Register extends Component {
                                 Create Your DevConnect Account
                             </h6>
                             <hr />
-                            <p className='text-center text-muted'>
-                                Quickly register with your social accounts
-                            </p>
-                            <Link
-                                to='/google'
-                                className='btn btn-danger btn-block mt-4 disabled'>
-                                <i className='fa fa-google-plus-official mr-2'></i>
-                                Register With Google
-                            </Link>
-                            <Link
-                                to='/facebook'
-                                disable
-                                className='btn btn-info btn-block mt-3 disabled'>
-                                <i className='fa fa-facebook-official mr-2'></i>
-                                Register With Facebook
-                            </Link>
-                            <hr />
-                            <p className='text-center text-muted mb-3'>
-                                Or register with email and password
-                            </p>
                             <form noValidate onSubmit={this.onRegisterSubmit}>
                                 <TextFieldGroup
                                     placeholder='Username here'
@@ -134,6 +114,7 @@ class Register extends Component {
 
 Register.propTypes = {
     registerUser: PropTypes.func.isRequired,
+    //registerGoogle: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired,
 };
