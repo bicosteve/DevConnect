@@ -6,7 +6,7 @@ import './App.css';
 
 import store from './store';
 import setAuthToken from './utils/setAuthToken';
-import { logoutUser, setCurrentUser, fetchUser } from './actions/authAction';
+import { logoutUser, setCurrentUser } from './actions/authAction';
 import { clearCurrentProfile } from './actions/profileAction';
 
 import PrivateRoute from './components/common/PrivateRoute';
@@ -39,7 +39,7 @@ if (localStorage.jwtToken) {
   //set user and is authenticated
   store.dispatch(setCurrentUser(decoded));
 
-  store.dispatch(fetchUser());
+  //store.dispatch(fetchUser());
 
   //check for expired token
   const currentTime = Date.now() / 1000;
@@ -70,12 +70,18 @@ class App extends Component {
               <Route exact path='/resetPassword' component={ResetPassword} />
               <Route exact path='/reset/:token' component={NewPassword} />
               <Route exact path='/login' component={Login} />
-              <Route exact path='/youtube' component={Youtube} />
               <Switch>
                 <PrivateRoute
                   exact={true}
                   path='/dashboard'
                   component={Dashboard}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact={true}
+                  path='/youtube'
+                  component={Youtube}
                 />
               </Switch>
               <Switch>
