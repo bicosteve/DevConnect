@@ -14,7 +14,8 @@ class NewPassword extends Component {
   };
 
   componentDidMount() {
-    this.props.history.push('/login');
+    //this.props.history.push('/login');
+    this.props.history.push('/reset');
     // if (this.props.auth.isAuthenticated) {
     //     this.props.history.push('/login');
     // }
