@@ -60,7 +60,7 @@ export const resetPassword = (userData, history) => {
     try {
       dispatch(clearErrors());
       await axios.post('/auth/resetPassword', userData);
-      history.push('/login');
+      history.push('/reset');
     } catch (error) {
       dispatch({ type: GET_ERRORS, payload: error.response.data });
     }
