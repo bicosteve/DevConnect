@@ -10,7 +10,7 @@ const Youtube = () => {
   const [selectedVideo, setSelectedVideo] = useState(null);
 
   useEffect(() => {
-    onSearchVideo('forests');
+    onSearchVideo('react programming');
   }, []);
 
   const onSearchVideo = async (video) => {

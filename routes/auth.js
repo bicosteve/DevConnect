@@ -11,7 +11,6 @@ const validateLogin = require('../validation/login');
 const validatePasswordReset = require('../validation/password-reset');
 const validateNewPassword = require('../validation/new-password');
 const { welcomeMail, passwordResetMail } = require('../mail/mails');
-const googleLogin = require('../middleware/googleLogin');
 const keys = require('../config/keys');
 
 const route = express();
@@ -80,7 +79,7 @@ route.post('/login', async (req, res) => {
     };
 
     const token = await jwt.sign(payload, keys.jwtSecretKey, {
-      expiresIn: 60 * 60 * 1000,
+      expiresIn: 24 * 60 * 60 * 1000,
     });
 
     res.status(200).json({ user, token: 'Bearer ' + token });
