@@ -17,6 +17,7 @@ import Landing from './components/Layout/Landing';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import ResetPassword from './components/Auth/ResetPassword';
+import ResetNotification from './components/Auth/ResetNotification';
 import NewPassword from './components/Auth/NewPassword';
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/create-profile/CreateProfile';
@@ -70,6 +71,11 @@ class App extends Component {
               <Route exact path='/resetPassword' component={ResetPassword} />
               <Route exact path='/reset/:token' component={NewPassword} />
               <Route exact path='/login' component={Login} />
+              <Route
+                exact
+                path='/resetNotification'
+                component={ResetNotification}
+              />
               <Switch>
                 <PrivateRoute
                   exact={true}
