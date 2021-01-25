@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
+//import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
 import rootReducer from './reducers/index';
@@ -7,14 +7,15 @@ import rootReducer from './reducers/index';
 const initialState = {};
 const middleware = [thunk];
 
+const composeEnhancer =
+  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+    : compose;
+
 const store = createStore(
   rootReducer,
   initialState,
-  // compose(
-  //   applyMiddleware(...middleware),
-  //   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  // )
-  composeWithDevTools(applyMiddleware(...middleware))
+  composeEnhancer(applyMiddleware(...middleware))
 );
 
 export default store;
