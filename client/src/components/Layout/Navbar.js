@@ -23,6 +23,11 @@ class Navbar extends Component {
             Videos
           </Link>
         </li>
+        <li className='nav-item'>
+          <Link className='nav-link' to='/images'>
+            Images
+          </Link>
+        </li>
         <li className='nav-item '>
           <Link className='nav-link' to='/feed'>
             Blogs

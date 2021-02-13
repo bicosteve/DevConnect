@@ -8,6 +8,7 @@ const path = require('path');
 require('./models/User');
 require('./models/Profile');
 require('./models/Post');
+require('./models/Image');
 const keys = require('./config/keys');
 
 mongoose
@@ -44,6 +45,7 @@ require('./passport/passport')(passport);
 app.use('/auth', require('./routes/auth'));
 app.use('/profile', require('./routes/profile'));
 app.use('/post', require('./routes/post'));
+app.use('/image', require('./routes/images'));
 
 //serve static assests if in production
 if (process.env.NODE_ENV === 'production') {

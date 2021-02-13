@@ -30,6 +30,7 @@ import Posts from './components/posts/Posts';
 import NotFound from './components/not-found/Notfound';
 import Post from './components/post/Post';
 import Youtube from './components/youtube/Youtube';
+import ImageApp from './components/images/ImageApp';
 
 //check for token
 if (localStorage.jwtToken) {
@@ -71,6 +72,7 @@ class App extends Component {
               <Route exact path='/resetPassword' component={ResetPassword} />
               <Route exact path='/reset/:token' component={NewPassword} />
               <Route exact path='/login' component={Login} />
+              <Route exact path='/images' component={ImageApp} />
               <Route
                 exact
                 path='/resetNotification'

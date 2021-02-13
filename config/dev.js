@@ -9,6 +9,9 @@ module.exports = {
   sendGridKey:
     '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',
   redirectDomain: 'http://localhost:3000',
+  cloudinaryName: 'bico',
+  cloudinaryApiKey: '315527564853381',
+  cloudinarySecret: 'YPv-9TR1hLtDuKGVjcZBkfR1JSU',
 };
 
 //apikey-AIzaSyAsRcM2LJPXbjrQer80nk_eiKBip7uE2Xo
