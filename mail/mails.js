@@ -18,7 +18,7 @@ async function passwordResetMail(email, token) {
     from: 'oloobico@gmail.com',
     subject: 'Reset Token',
     html: `
-		<p>You made a password request.</p>
+		<h3>You made a password reset request.</h3>
 		<p>Click here <a href='${Keys.redirectDomain}/reset/${token}'>link<a/> to reset your password</p>
 		<p>Please ignore if you did not request for password reset.</p>
 		`,

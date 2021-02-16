@@ -16,3 +16,7 @@ export const GET_POSTS = 'GET_POSTS';
 export const POST_LOADING = 'POST_LOADING';
 export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
+
+export const GET_IMAGES = 'GET_IMAGES';
+export const POST_IMAGE = 'POST_IMAGE';
+export const IMAGE_LOADING = 'IMAGE_LOADING';
